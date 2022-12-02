@@ -19,5 +19,7 @@ def score2(s):
 sol_1 = sum(score(d) for d in data)
 sol_2 = sum(score2(d) for d in data)
 
+print(sol_1)
+print(sol_2)
 # submit(sol_1)
 # submit(sol_2)
