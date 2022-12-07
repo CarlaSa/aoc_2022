@@ -16,11 +16,11 @@ class Tree:
     def link_child(self, other):
         self.children[other.name] = other
 
-    def __sizeof__(self):
+    def size(self):
         size = 0
         for key, ch in self.children.items():
             if isinstance(ch, Tree):
-                size += ch.__sizeof__()
+                size += ch.size()
             else:
                 size += int(ch)
         return(size)
@@ -57,7 +57,7 @@ for commandline in data.split("$"):
             curr = curr.parent
         else:
             other = Tree(name=rest, parent=curr)
-            #assert other.name in curr.children
+            assert other.name in curr.children
             curr.link_child(other)
             curr = other
 
@@ -72,13 +72,14 @@ for commandline in data.split("$"):
             else:
                 curr.insert_child(b, a)
 
+print(tree)
 
 def task1():
     threshold = 100000
     total = 0
     trees = [tree]
     for tr in trees:
-        size = tr.__sizeof__()
+        size = tr.size()
         if size < threshold:
             total += size
         for k,v in tr.children.items():
@@ -90,11 +91,11 @@ def task1():
 def task2():
     total_space = 70000000
     needed = 30000000
-    free = total_space - tree.__sizeof__()
+    free = total_space - tree.size()
     trees = [tree]
     curr = total_space
     for tr in trees:
-        size = tr.__sizeof__()
+        size = tr.size()
         if size + free > needed:
             if size < curr:
                 curr = size
@@ -103,6 +104,8 @@ def task2():
                 trees.append(v)
     return curr
 
+print(task1())
+print(task2())
 #submit(task1())
 #submit(task2())
 
