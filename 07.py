@@ -1,8 +1,6 @@
 from aocd import get_data, submit
 
 data = get_data(year=2022, day=7)
-# with open('input.txt') as f:
-#     data = f.read()
 
 class Tree:
     def __init__(self, name, parent):
@@ -41,12 +39,8 @@ class Tree:
 
 # parse tree
 curr = None
-parent_dict = None
-curr_name = None
 for commandline in data.split("$"):
     befehl = commandline[1:3]
-    # a, b = d.split(" ")
-    # if a =="cd":
     if befehl == "cd":
         rest = commandline.split("\n")[0][4:]
         #new_tree = Tree(name=rest, parent=)
@@ -103,6 +97,7 @@ def task2():
             if isinstance(v, Tree):
                 trees.append(v)
     return curr
+
 
 print(task1())
 print(task2())
