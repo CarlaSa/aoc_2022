@@ -37,12 +37,10 @@ sol1 = sum(sum(i) for i in is_visible)
 
 def scenic_score(i,j, mmax = len(data)):
     if i ==0 or j == 0 or i == mmax or j == mmax:
-        return  0
+        return 0
     def get_s(ii_, jj_):
         s = 1
         s_max = max(len(ii_), len(jj_))
-        if min(len(ii_), len(jj_)) == 0:
-            return 0
         for ii in ii_:
             for jj in jj_:
                 if data[i][j] > data[ii][jj]:
@@ -63,5 +61,5 @@ for i in range(h):
         ss_max = max(ss_max, scenic_score(i,j))
 sol2 = ss_max
 
-print(sol1)
-print(sol2)
+print(sol1) # 1823
+print(sol2) # 211680
