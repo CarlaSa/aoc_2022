@@ -9,10 +9,7 @@ cycle_image = ""
 
 
 def check():
-    global cycle
-    global x
-    global score
-    global cycle_image
+    global cycle, x, score, cycle_image
     signal_strength = cycle * x
     if cycle in range(20, 240, 40):
         score += signal_strength
