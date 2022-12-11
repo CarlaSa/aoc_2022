@@ -2,6 +2,7 @@ from aocd import get_data, submit
 import numpy as np
 from pprint import pp
 from math import prod
+from time import time
 
 data = get_data(year=2022, day=11).split("Monkey ")
 
@@ -27,8 +28,7 @@ def parse_data():
     return monkeys_
 
 
-def loop_trough(n, operation):
-    global monkeys
+def loop_trough(n, operation, monkeys):
     for _ in range(n):
         for monkey in monkeys:
             while len(monkey["items"]) > 0:
@@ -45,11 +45,15 @@ def loop_trough(n, operation):
     return top2[0] * top2[1]
 
 
+s = time()
 monkeys = parse_data()
+sol1 = loop_trough(20, lambda x: x // 3, monkeys)
+print("sol1: ", sol1)
+print(f"time: {time()-s}\n")
 
-sol1 = loop_trough(20, operation=lambda x: x // 3)
-print(sol1)
-
+s = time()
+monkeys = parse_data()
 dividable_all = prod([m["test_div"] for m in monkeys])
-sol2 = loop_trough(10000, operation= lambda x: x % dividable_all)
-print(sol2)
+sol2 = loop_trough(10000, lambda x: x % dividable_all, monkeys)
+print("sol2: ", sol2)
+print(f"time: {time()-s}")
