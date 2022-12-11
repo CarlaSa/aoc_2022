@@ -8,7 +8,7 @@ data = get_data(year=2022, day=11).split("Monkey ")
 
 
 def to_lambda(s):
-    return lambda old: eval(s.split("=")[1])
+    return eval("lambda old: " + s.split("=")[1])
 
 
 def parse_data():
