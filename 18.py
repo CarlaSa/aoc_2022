@@ -3,8 +3,8 @@ from collections import deque, defaultdict
 
 use_test = False
 data = get_data(year=2022, day=18)
-with open("input.txt") as f:
-    data, use_test = f.read(), True
+# with open("input.txt") as f:
+#     data, use_test = f.read(), True
 
 data = set([tuple(int(x) for x in d.split(",")) for d in data.split("\n")])
 neighbors = set()
@@ -50,12 +50,12 @@ for n in neighbors:
     print(n)
     trapped_surface = 0
     q = deque([n])
+    curr_neigh = {n}
     while len(q) > 0:
         curr = q.popleft()
         if looked_at[curr]:
             continue
         looked_at[curr] = True
-        curr_neigh = {curr}
         for i in [[-1, 0, 0], [1, 0, 0], [0, -1, 0], [0, 1, 0], [0, 0, 1], [0, 0, -1]]:
             neigh = tuple(int(curr[j]) + i[j] for j in range(3))
             if neigh in data:
@@ -75,6 +75,6 @@ for n in neighbors:
     surface -= trapped_surface
 
 print("Task 2: ", surface)
-# if not use_test:
-#     if surface > 0:
-#         submit(surface)
+if not use_test:
+    if surface > 0:
+        submit(surface)
